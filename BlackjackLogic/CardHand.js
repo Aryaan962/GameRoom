@@ -8,7 +8,7 @@ function CardHand() {
         this.aces = 0;
         this.points = 0;
         for (var i = 0; i < this.cardsInHand.length; i++) {
-            if (this.cardsInHand[i][0] == "Ace") {
+            if (this.cardsInHand[i][0] == "A") {
                 this.aces += 1;
                 continue;
             }
@@ -38,10 +38,9 @@ function CardHand() {
     this.addCardToHand = function() {
         let value = this.getRandomCardValue(cardValues);
         let suit = this.getRandomCardSuit(cardSuits);
-        let card = value + " of " + suit;
+        let card = value + suit;
         if (cardsUsed.includes(card)) {
             this.addCardToHand();
-            console.log("dup");
         }
         else {
             this.cardsInHand.push(card.split(" "));
