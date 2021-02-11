@@ -2,6 +2,7 @@ function CardHand() {
     this.cardsInHand = [];
     this.points = 0;
     this.aces = 0;
+    this.status = true;
 
     this.calculatePoints = function() {
         this.aces = 0;
@@ -11,7 +12,7 @@ function CardHand() {
                 this.aces += 1;
                 continue;
             }
-            var index = cardValues.indexOf(this.cardsInHand[i][0]);
+            let index = cardValues.indexOf(this.cardsInHand[i][0]);
             let value;
             
             if (index >= 9) {
@@ -21,17 +22,35 @@ function CardHand() {
             }
             this.points += value;
         }
-        // Have to add in ace interaction
+
+        // Ace interaction. Add each ace to the hand as 11, if it busts, take away 10 and value the ace as 1.
+        for (var i = 0; i < this.aces; i++) {
+            this.points += 11;
+            if (this.points > max) {
+                this.points -= 10;
+            }
+        }
+        if (this.points > max) {
+            this.status = false;
+        }
     }
 
     this.addCardToHand = function() {
         let value = this.getRandomCardValue(cardValues);
         let suit = this.getRandomCardSuit(cardSuits);
         let card = value + " of " + suit;
-        cardsUsed.push(card);
-        this.cardsInHand.push(card.split(" "));
-        this.calculatePoints();
-        return this.points;
+        if (cardsUsed.includes(card)) {
+            this.addCardToHand();
+            console.log("dup");
+        }
+        else {
+            this.cardsInHand.push(card.split(" "));
+            this.calculatePoints();
+            cardsUsed.push(card);
+            console.log(this.cardsInHand);
+            console.log(this.status);
+            console.log(this.points);
+        }
     }
     
     this.getRandomCardValue = function() {       
@@ -50,5 +69,16 @@ function CardHand() {
         let scaleValue = (2 ** bitsInVar) / cardSuits.length;
         array[0] = array[0] / scaleValue;
         return cardSuits[array[0]];
+    }
+
+    this.checkStatus = function() {
+        if (!this.status) {
+
+        }
+    }
+
+    this.hit = function() {
+        this.addCardToHand();
+        this.checkStatus();
     }
 }

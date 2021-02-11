@@ -1,0 +1,43 @@
+h1 {font-family: Arial, sans-serif;
+    margin: 25px;
+    font-size:xx-large;
+}
+
+p {font-family: Arial, sans-serif; 
+    text-align: center;
+}
+
+a {font-family: Arial, sans-serif;
+    text-decoration: none;
+    color:black;
+    text-align: center;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table {
+    position: fixed;
+    height: 400px;
+    width: 950px;
+    background-color: rgb(31, 74, 45);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -475px;
+}
+
+.tableBorder {
+    position: fixed;
+    height: 500px;
+    width: 1050px;
+    background-color: rgb(102, 51, 0);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -525px;
+}

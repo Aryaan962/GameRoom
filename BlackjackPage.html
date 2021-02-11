@@ -7,29 +7,17 @@
         <meta name="keywords" content="Cryptocurrency, Casino, Games">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Game Room</title>
-        <style>
-            h1 {font-family: Arial, sans-serif;
-                margin: 25px;}
-            p {font-family: Arial, sans-serif; 
-                text-align: center;}
-            a {text-decoration: none;
-                color:black;
-                text-align: center;
-            }
-            .center {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        </style>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <header>
-            <h1 style="font-family: Arial, Helvetica, sans-serif;">Welcome to Blackjack</h1>
-            <nav>
-                <a href="index.html">Home</a>
+            <nav class="center">
+                <a style="text-align: left;" href="index.html"><h1>Welcome to Blackjack</h1></a>
             </nav>
         </header>
         <main>
+            <div class="tableBorder"></div>
+            <div class="table"></div>
         </main>
         <script src=BlackjackLogic/CardHand.js></script>
         <script src=BlackjackLogic/BlackjackEngine.js></script>
