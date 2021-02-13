@@ -5,12 +5,26 @@ let cardsUsed;
 let user;
 let dealer;
 
+let newGameButton = document.getElementById("newGame");
+let hitButton = document.getElementById("hit");
+let standButton = document.getElementById("stand");
+let forfeitButton = document.getElementById("forfeit");
+let betSize = document.getElementById("betSize");
+
+newGameButton.disabled = false;
+hitButton.disabled = true;
+standButton.disabled = true;
+forfeitButton.disabled = true;
+betSize.disabled = false;
+
 function newGame() {
-    cardsUsed = [];
-    user = new CardHand();
-    dealer = new CardHand();
-    console.log("hi");
-    startGame();
+    console.clear();
+    //if (checkBetSize()) {
+        cardsUsed = [];
+        user = new CardHand("User");
+        dealer = new CardHand("Dealer");
+        startGame();
+    //}
 }
 
 function startGame() {
@@ -18,9 +32,75 @@ function startGame() {
     dealer.addCardToHand();
     user.addCardToHand();
     dealer.addCardToHand();
-    updateCards();
+    updatePage();
+
+    // update buttons
+    newGameButton.disabled = true;
+    hitButton.disabled = false;
+    standButton.disabled = false;
+    forfeitButton.disabled = false;
+    betSize.disabled = true;
 }
 
-function updateCards() {
-    document.write('<img src="http://deckofcardsapi.com/static/img/AS.png"/>');
+function updatePage() {    
+    showUserCards();
+    showDealerCards();
+}
+
+function showUserCards() {
+    document.getElementById("ovalTable");
+    var node = document.createElement("p");
+    node.style.position = "absolute";
+    node.style.left = "50%";
+    node.style.transform = "translate(-70%, -50%)";
+    node.style.bottom = "0px"
+    node.innerHTML = user.cardsInHand;
+    document.getElementById("ovalTable").appendChild(node);
+}
+
+function showDealerCards() {
+    document.getElementById("ovalTable");
+    var node = document.createElement("p");
+    node.style.position = "absolute";
+    node.style.left = "50%";
+    node.style.transform = "translate(-70%, -50%)";
+    node.style.top = "20px";
+    node.innerHTML = dealer.cardsInHand;
+    document.getElementById("ovalTable").appendChild(node);
+}
+
+function hit() {
+    if (!user.hit()) {
+        newGameButton.disabled = false;
+        hitButton.disabled = true;
+        standButton.disabled = true;
+        betSize.disabled = false;
+    }
+}
+
+function stand() {
+    newGameButton.disabled = false;
+    hitButton.disabled = true;
+    standButton.disabled = true;
+    forfeitButton.disabled = true;
+    betSize.disabled = false;
+    dealer.dealerMoves(user.points);
+}
+
+function forfeit() {
+    console.clear();
+    newGameButton.disabled = false;
+    hitButton.disabled = true;
+    standButton.disabled = true;
+    forfeitButton.disabled = true;
+    betSize.disabled = false;
+}
+
+function checkBetSize() {
+    if (betSize.value < 0.01) {
+        window.alert("You must increase your bet or you forgot to input your bet.");
+        return false;
+    } else {
+        return true;
+    }
 }

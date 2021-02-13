@@ -1,4 +1,5 @@
-function CardHand() {
+function CardHand(playerName) {
+    this.player = playerName;
     this.cardsInHand = [];
     this.points = 0;
     this.aces = 0;
@@ -8,14 +9,14 @@ function CardHand() {
         this.aces = 0;
         this.points = 0;
         for (var i = 0; i < this.cardsInHand.length; i++) {
-            if (this.cardsInHand[i][0] == "A") {
+            if (this.cardsInHand[i].charAt(0) == "A") {
                 this.aces += 1;
                 continue;
             }
-            let index = cardValues.indexOf(this.cardsInHand[i][0]);
+            let index = cardValues.indexOf(this.cardsInHand[i].charAt(0));
             let value;
             
-            if (index >= 9) {
+            if (index >= 9 || this.cardsInHand[i].charAt(0) == 1) {
                 value = 10;
             } else {
                 value = index + 1;
@@ -25,14 +26,13 @@ function CardHand() {
 
         // Ace interaction. Add each ace to the hand as 11, if it busts, take away 10 and value the ace as 1.
         for (var i = 0; i < this.aces; i++) {
+            console.log("Aces: " + this.aces);
             this.points += 11;
             if (this.points > max) {
                 this.points -= 10;
             }
         }
-        if (this.points > max) {
-            this.status = false;
-        }
+        this.checkStatus();
     }
 
     this.addCardToHand = function() {
@@ -43,7 +43,7 @@ function CardHand() {
             this.addCardToHand();
         }
         else {
-            this.cardsInHand.push(card.split(" "));
+            this.cardsInHand.push(card);
             this.calculatePoints();
             cardsUsed.push(card);
             console.log(this.cardsInHand);
@@ -71,13 +71,40 @@ function CardHand() {
     }
 
     this.checkStatus = function() {
-        if (!this.status) {
-
+        if (this.points > max) {
+            this.status = false;
+            window.alert(this.player + " lost.");
+            console.log(this.player + " is a bust!");
+            newGameButton.disabled = false;
+            hitButton.disabled = true;
+            standButton.disabled = true;
+            betSize.disabled = false;
         }
     }
 
     this.hit = function() {
         this.addCardToHand();
-        this.checkStatus();
+        return this.status;
+    }
+
+    this.dealerMoves = function(pointsToBeat) {
+        let won;
+        if (this.status) {
+            while(this.points < pointsToBeat) {
+                won = this.hit();
+            }
+            this.checkForWinner(pointsToBeat);
+        }
+    }
+
+    this.checkForWinner = function(pointsToBeat) {
+        if (this.points > pointsToBeat && this.status) {
+            window.alert("User lost.");
+            return true;
+        } else if (this.points == pointsToBeat) {
+            window.alert("It was a tie.");
+            return true;
+        }
+        return false;
     }
 }

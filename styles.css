@@ -18,32 +18,44 @@ a {font-family: Arial, sans-serif;
     margin-right: auto;
 }
 
-.table {
-    position: fixed;
-    height: 400px;
-    width: 950px;
-    background-color: rgb(31, 74, 45);
-    border-radius: 50%;
-    top: 50%;
+.absoluteCenter {
+    position: absolute;
     left: 50%;
-    margin-top: -200px;
-    margin-left: -475px;
+    transform: translate(-70%, -50%);
 }
 
-.tableBorder {
-    position: fixed;
-    height: 500px;
-    width: 1050px;
-    background-color: rgb(102, 51, 0);
+.bottom {
+    position: absolute;
+    bottom: -30px;
+}
+
+.oval {
+    position: absolute;
+    height: 450px;
+    width: 1000px;
+    background-color: rgb(31, 74, 45);
     border-radius: 50%;
+}
+
+.table {
     top: 50%;
     left: 50%;
-    margin-top: -250px;
-    margin-left: -525px;
+    margin-top: -225px;
+    margin-left: -500px;
+}
+
+.border {
+    height: 530px;
+    width: 1080px;
+    background-color: rgb(102, 51, 0);
+    top: 50%;
+    left: 50%;
+    margin-top: -265px;
+    margin-left: -540px;
 }
 
 .dealerChip {
-    position: fixed;
+    position: absolute;
     height: 15px;
     width: 15px;
     background: #fff;
@@ -53,11 +65,12 @@ a {font-family: Arial, sans-serif;
     color: rgb(0, 0, 0);
     text-align: center;
     font: 15px Arial, sans-serif;
-    top: 25%;
-    left: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-550%, -925%);
 }
 
-.button {
+input[type=button] {
     display: inline-block;
     transition-duration: 0.2s;
     margin: 4px 2px;
@@ -71,7 +84,29 @@ a {font-family: Arial, sans-serif;
     font: 14px Arial, sans-serif;
 }
 
-.button:hover {
-    background-color: #555555;
+input[type=button]:hover {
+    background-color: #333333;
     color: white;
+}
+
+input[type=button]:active {
+    background-color: black;
+}
+
+input[type=button]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+input[type=number] {
+    position: absolute;
+    display:inline-block;
+    box-sizing: border-box;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    padding: 7px 4px;
+    margin-left: 10px;
+    margin-top: -41px;
+    color: #555555;
+    font: 14px Arial, sans-serif;
 }

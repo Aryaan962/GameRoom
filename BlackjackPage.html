@@ -10,19 +10,38 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <script src=BlackjackLogic/CardHand.js></script>
-        <script src=BlackjackLogic/BlackjackEngine.js></script>
         <header>
-            <nav class="center">
+            <nav>
                 <a style="text-align: left;" href="index.html"><h1>Welcome to Blackjack</h1></a>
             </nav>
         </header>
         <main>
-            <span class="tableBorder"></span>
-            <span class="table"></span>
+            <span class="oval border"></span>
+            <span class="oval table" id="ovalTable"></span>
             <span class="dealerChip">D</span>
-            <span class="button">New Game</span>
+            <table class="absoluteCenter bottom">
+                <tr>
+                    <td>
+                        <input type="button" id="newGame" onclick="newGame();" value="New Game">
+                    </td>
+                    <td>
+                        <input type="button" id="hit" onclick="hit();" value="Hit">
+                    </td>
+                    <td>
+                        <input type="button" id="stand" onclick="stand();" value="Stand">
+                    </td>
+                    <td>
+                        <input type="button" id="forfeit" onclick="forfeit();" value="Forfeit">
+                    </td>
+                    <td>
+                        <p>$</p>
+                        <input type="number" id="betSize" placeholder="Place Your Bet...">
+                    </td>
+                </tr>
+            </table>
         </main>
-        
+        <img src="" alt="">
+        <script src=BlackjackLogic/CardHand.js></script>
+        <script src=BlackjackLogic/BlackjackEngine.js></script>
     </body>
 </html>
