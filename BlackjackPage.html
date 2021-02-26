@@ -16,10 +16,18 @@
             </nav>
         </header>
         <main>
-            <span class="oval border"></span>
-            <span class="oval table" id="ovalTable"></span>
-            <span class="dealerChip">D</span>
-            <table class="absoluteCenter bottom">
+            <div class="oval border"></div>
+            <div class="oval main" id="ovalTable">
+                <div class="dealerChip">D</div>
+                <div class="dealer center" id="dealerCards">
+
+                </div>
+                <div class="user center" id="userCards">
+
+                </div>
+            </div>
+            
+            <table class="center bottom">
                 <tr>
                     <td>
                         <input type="button" id="newGame" onclick="newGame();" value="New Game">
@@ -31,7 +39,6 @@
                         <input type="button" id="stand" onclick="stand();" value="Stand">
                     </td>
                     <td>
-                        <p>$</p>
                         <input type="number" id="betSize" placeholder="Place Your Bet...">
                     </td>
                 </tr>

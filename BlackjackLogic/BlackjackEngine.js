@@ -5,11 +5,13 @@ let cardsUsed;
 let user;
 let dealer;
 
+let coveredCard = document.createElement("img");
+let dealerCardCovered = document.createElement("img");
+let dealerCardUncovered = document.createElement("img");
 let userCards = document.createElement("p");
-let dealerCards = document.createElement("p");
 let winnerMessage = document.createElement("img");
-let userPoints = document.createElement("p");
 let dealerPoints = document.createElement("p");
+let userPoints = document.createElement("p");
 
 let newGameButton = document.getElementById("newGame");
 let hitButton = document.getElementById("hit");
@@ -47,28 +49,39 @@ function startGame() {
 }
 
 function showDealerCardsCovered() {
-    dealerCards.style.position = "absolute";
-    dealerCards.style.left = "50%";
-    dealerCards.style.transform = "translate(-50%)";
-    dealerCards.innerHTML = dealer.cardsInHand[0];
-    document.getElementById("ovalTable").appendChild(dealerCards);
+    dealerCardCovered.src = "Images/PlayingCards/" + dealer.cardsInHand[0] + ".png";
+    dealerCardCovered.style.width = "75px";
+    document.getElementById("dealerCards").append(dealerCardCovered);
+
+    coveredCard.src = "Images/PlayingCards/Covered.png";
+    coveredCard.style.height = "110px";
+    document.getElementById("dealerCards").append(coveredCard);
 }
 
 function showDealerCardsUncovered() {
-    dealerCards.style.position = "absolute";
-    dealerCards.style.left = "50%";
-    dealerCards.style.transform = "translate(-50%)";
-    dealerCards.innerHTML = dealer.cardsInHand;
-    document.getElementById("ovalTable").appendChild(dealerCards);
+    let dealerCardsNode = document.getElementById("dealerCards");
+    while (dealerCardsNode.firstChild) {
+        dealerCardsNode.removeChild(dealerCardsNode.lastChild);
+    }
+    for (var i = 0; i < dealer.cardsInHand.length; i++) {
+        dealerCardUncovered = document.createElement("img");
+        dealerCardUncovered.src = "Images/PlayingCards/" + dealer.cardsInHand[i] + ".png";
+        dealerCardUncovered.style.width = "75px";
+        document.getElementById("dealerCards").append(dealerCardUncovered);
+    }
 }
 
 function showUserCards() {
-    userCards.style.position = "absolute";
-    userCards.style.left = "50%";
-    userCards.style.bottom = "0px"
-    userCards.style.transform = "translate(-50%)";
-    userCards.innerHTML = user.cardsInHand;
-    document.getElementById("ovalTable").appendChild(userCards);
+    let userCardsNode = document.getElementById("userCards");
+    while (userCardsNode.firstChild) {
+        userCardsNode.removeChild(userCardsNode.lastChild);
+    }
+    for (var i = 0; i < user.cardsInHand.length; i++) {
+        userCards = document.createElement("img");
+        userCards.src = "Images/PlayingCards/" + user.cardsInHand[i] + ".png";
+        userCards.style.width = "75px";
+        document.getElementById("userCards").append(userCards);
+    }
 }
 
 function showDealerPointsCovered() {
@@ -76,7 +89,7 @@ function showDealerPointsCovered() {
     dealerPoints.style.left = "10px";
     dealerPoints.style.bottom = "0px";
     dealerPoints.innerHTML = "Dealer Points: ?";
-    document.getElementById("main").appendChild(dealerPoints);
+    document.getElementById("main").append(dealerPoints);
 }
 
 function showDealerPointsUncovered() {
@@ -88,7 +101,7 @@ function showUserPoints() {
     userPoints.style.right = "10px";
     userPoints.style.bottom = "0px";
     userPoints.innerHTML = "<b>Your Points: " + user.points + "</b>";
-    document.getElementById("main").appendChild(userPoints);
+    document.getElementById("main").append(userPoints);
 }
 
 function hit() {
@@ -102,9 +115,12 @@ function hit() {
 }
 
 function stand() {
-    while (dealer.points < 17 || dealer.points < user.points) {
+    while (dealer.points < 17 && dealer.points < user.points) {
         dealer.addCardToHand();
     }
+
+    coveredCard.src = "";
+    dealerCardCovered.src = "";
 
     showDealerPointsUncovered();
     showDealerCardsUncovered();
@@ -114,7 +130,6 @@ function stand() {
 }
 
 function displayWinner() {
-    document.getElementById("ovalTable");
     winnerMessage.style.position = "absolute";
     winnerMessage.style.left = "50%";
     winnerMessage.style.top = "50%"
@@ -126,6 +141,8 @@ function displayWinner() {
     } else {
         if (!user.checkStatus() || dealer.points > user.points) {
             winnerMessage.src = "Images/DealerWins.png";
+        } else if (dealer.points == user.points) {
+            winnerMessage.src = "Images/Push.png";
         } else {
             winnerMessage.src = "Images/YouWin.png";
         } 
@@ -147,8 +164,16 @@ function gameButtons() {
 }
 
 function clearHTML() {
-    userCards.innerHTML = "";
-    dealerCards.innerHTML = "";
+    let dealerCardsNode = document.getElementById("dealerCards");
+    while (dealerCardsNode.firstChild) {
+        dealerCardsNode.removeChild(dealerCardsNode.lastChild);
+    }
+
+    let userCardsNode = document.getElementById("userCards");
+    while (userCardsNode.firstChild) {
+        userCardsNode.removeChild(userCardsNode.lastChild);
+    }
+
     winnerMessage.src = "";
     userPoints.innerHTML = "";
     dealerPoints.innerHTML = "";

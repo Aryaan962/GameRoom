@@ -14,19 +14,19 @@ a {font-family: Arial, sans-serif;
 }
 
 .center {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.absoluteCenter {
     position: absolute;
     left: 50%;
-    transform: translate(-70%, -50%);
+    transform: translate(-50%);
+}
+
+.top {
+    position: absolute;
+    top: 0px;
 }
 
 .bottom {
     position: absolute;
-    bottom: -30px;
+    bottom: 0px;
 }
 
 .oval {
@@ -37,11 +37,10 @@ a {font-family: Arial, sans-serif;
     border-radius: 50%;
 }
 
-.table {
+.main {
     top: 50%;
     left: 50%;
-    margin-top: -225px;
-    margin-left: -500px;
+    transform: translate(-50%, -50%);
 }
 
 .border {
@@ -65,9 +64,18 @@ a {font-family: Arial, sans-serif;
     color: rgb(0, 0, 0);
     text-align: center;
     font: 15px Arial, sans-serif;
-    top: 50%;
-    left: 50%;
-    transform: translate(-550%, -925%);
+    top: -25px;
+    left: 35%;
+}
+
+.dealer {
+    position: absolute;
+    top: 20px;
+}
+
+.user {
+    position: absolute;
+    bottom: 20px;
 }
 
 input[type=button] {
@@ -99,14 +107,12 @@ input[type=button]:disabled {
 }
 
 input[type=number] {
-    position: absolute;
     display:inline-block;
     box-sizing: border-box;
     border: 1px solid #333333;
     border-radius: 4px;
-    padding: 7px 4px;
-    margin-left: 10px;
-    margin-top: -41px;
+    padding: 8px 4px;
+
     color: #555555;
     font: 14px Arial, sans-serif;
 }

@@ -49,8 +49,6 @@ function CardHand(playerName) {
             this.cardsInHand.push(card);
             this.calculatePoints();
             cardsUsed.push(card);
-            console.log(this.cardsInHand);
-            console.log(this.points);
         }
     }
     
