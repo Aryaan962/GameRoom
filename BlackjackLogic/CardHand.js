@@ -24,15 +24,18 @@ function CardHand(playerName) {
             this.points += value;
         }
 
-        // Ace interaction. Add each ace to the hand as 11, if it busts, take away 10 and value the ace as 1.
         for (var i = 0; i < this.aces; i++) {
-            console.log("Aces: " + this.aces);
-            this.points += 11;
+            this.points += 1;
+        }
+
+        for (var j = 0; j < this.aces; j++) {
+            this.points += 10;
             if (this.points > max) {
                 this.points -= 10;
             }
         }
-        this.checkStatus();
+
+        return this.points;
     }
 
     this.addCardToHand = function() {
@@ -47,7 +50,6 @@ function CardHand(playerName) {
             this.calculatePoints();
             cardsUsed.push(card);
             console.log(this.cardsInHand);
-            console.log(this.status);
             console.log(this.points);
         }
     }
@@ -73,38 +75,7 @@ function CardHand(playerName) {
     this.checkStatus = function() {
         if (this.points > max) {
             this.status = false;
-            window.alert(this.player + " lost.");
-            console.log(this.player + " is a bust!");
-            newGameButton.disabled = false;
-            hitButton.disabled = true;
-            standButton.disabled = true;
-            betSize.disabled = false;
         }
-    }
-
-    this.hit = function() {
-        this.addCardToHand();
         return this.status;
-    }
-
-    this.dealerMoves = function(pointsToBeat) {
-        let won;
-        if (this.status) {
-            while(this.points < pointsToBeat) {
-                won = this.hit();
-            }
-            this.checkForWinner(pointsToBeat);
-        }
-    }
-
-    this.checkForWinner = function(pointsToBeat) {
-        if (this.points > pointsToBeat && this.status) {
-            window.alert("User lost.");
-            return true;
-        } else if (this.points == pointsToBeat) {
-            window.alert("It was a tie.");
-            return true;
-        }
-        return false;
     }
 }
