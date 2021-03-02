@@ -8,12 +8,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Game Room</title>
         <link rel="stylesheet" href="styles.css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     </head>
     <body id="main">
         <header>
             <nav>
-                <a style="text-align: left;" href="index.html"><h1>Welcome to Blackjack</h1></a>
+                <h1><a style="text-align: left;" href="index.html">Welcome to Blackjack</a></h1>
             </nav>
+            <input type="button" class="connectWallet" style="position: absolute; top: 25px; right: 25px;" id="connectWallet" onclick="loadWallet();" value="Connect Wallet">
         </header>
         <main>
             <div class="oval border"></div>
@@ -30,16 +32,16 @@
             <table class="center bottom">
                 <tr>
                     <td>
-                        <input type="button" id="newGame" onclick="newGame();" value="New Game">
+                        <input type="button" class="buttonBlackjack" id="newGame" onclick="newGame();" value="New Game">
                     </td>
                     <td>
-                        <input type="button" id="hit" onclick="hit();" value="Hit">
+                        <input type="button" class="buttonBlackjack" id="hit" onclick="hit();" value="Hit">
                     </td>
                     <td>
-                        <input type="button" id="stand" onclick="stand();" value="Stand">
+                        <input type="button" class="buttonBlackjack" id="stand" onclick="stand();" value="Stand">
                     </td>
                     <td>
-                        <input type="number" id="betSize" placeholder="Place Your Bet...">
+                        <input type="number" class="bet" id="betSize" placeholder="Place Your Bet...">
                     </td>
                 </tr>
             </table>
