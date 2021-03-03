@@ -1,4 +1,4 @@
-async function load() {
+async function loadWallet() {
     await loadWeb3();
     window.contract = await loadContract();
     const account = await getCurrentAccount();
