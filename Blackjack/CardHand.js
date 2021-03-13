@@ -1,11 +1,14 @@
-function CardHand(playerName) {
-    this.player = playerName;
-    this.cardsInHand = [];
-    this.points = 0;
-    this.aces = 0;
-    this.status = true;
+class CardHand {
 
-    this.calculatePoints = function() {
+    constructor(playerName) {
+        this.name = playerName;
+        this.cardsInHand = [];
+        this.points = 0;
+        this.aces = 0;
+        this.status = true;
+    }
+
+    calculatePoints() {
         this.aces = 0;
         this.points = 0;
         for (var i = 0; i < this.cardsInHand.length; i++) {
@@ -38,7 +41,7 @@ function CardHand(playerName) {
         return this.points;
     }
 
-    this.addCardToHand = function() {
+    addCardToHand() {
         let value = this.getRandomCardValue(cardValues);
         let suit = this.getRandomCardSuit(cardSuits);
         let card = value + suit;
@@ -52,7 +55,7 @@ function CardHand(playerName) {
         }
     }
     
-    this.getRandomCardValue = function() {       
+    getRandomCardValue() {       
         let array = new Uint8Array(1);
         let bitsInVar = 8;
         window.crypto.getRandomValues(array);
@@ -61,7 +64,7 @@ function CardHand(playerName) {
         return cardValues[array[0]];
     }
     
-    this.getRandomCardSuit = function() {
+    getRandomCardSuit() {
         let array = new Uint8Array(1);
         let bitsInVar = 8;
         window.crypto.getRandomValues(array);
@@ -70,7 +73,7 @@ function CardHand(playerName) {
         return cardSuits[array[0]];
     }
 
-    this.checkStatus = function() {
+    checkStatus() {
         if (this.points > max) {
             this.status = false;
         }

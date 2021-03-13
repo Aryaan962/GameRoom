@@ -9,17 +9,13 @@
         <title>Game Room</title>
         <link rel="stylesheet" href="styles.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-        <script src=Blackjack/CardHand.js></script>
-        <script src=Blackjack/BlackjackEngine.js></script>
     </head>
     <body id="main">
         <header>
             <nav>
                 <h1><a style="text-align: left;" href="index.html">Welcome to Blackjack</a></h1>
             </nav>
-            <button class="connectWallet" style="position: absolute; top: 25px; right: 25px;" id="connectWallet" onclick="loadWallet();">
-                <span id="walletStatus">Connect Wallet</span>
-            </button>
+            <div id="walletInfo"></div>
         </header>
         <main>
             <div class="oval border"></div>
@@ -36,13 +32,19 @@
             <table class="center bottom">
                 <tr>
                     <td>
-                        <input type="button" class="buttonBlackjack" id="newGame" onclick="newGame();" value="New Game">
+                        <button type="button" class="buttonBlackjack" id="newGame" onclick="newGame();">
+                            New Game 
+                        </button>
                     </td>
                     <td>
-                        <input type="button" class="buttonBlackjack" id="hit" onclick="hit();" value="Hit">
+                        <button type="button" class="buttonBlackjack" id="hit" onclick="hit();">
+                            Hit 
+                        </button>
                     </td>
                     <td>
-                        <input type="button" class="buttonBlackjack" id="stand" onclick="stand();" value="Stand">
+                        <button type="button" class="buttonBlackjack" id="stand" onclick="stand();">
+                            Stand 
+                        </button>
                     </td>
                     <td>
                         <input type="number" class="bet" id="betSize" placeholder="Place Your Bet...">
@@ -51,4 +53,8 @@
             </table>
         </main>
     </body>
+    <script src=Blackjack/CardHand.js></script>
+    <script src=Blackjack/BlackjackEngine.js></script>
+    <script src="node_modules/web3/dist/web3.min.js"></script>
+    <script src="Wallet/Wallet.js"></script>
 </html>

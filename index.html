@@ -9,17 +9,11 @@
         <title>Game Room</title>
         <link rel="stylesheet" href="styles.css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
-        <script src='node_modules/web3/dist/web3.min.js'></script>
-        <script src="Wallet/LoadWallet.js"></script>
     </head>
     <body>
         <header>
             <h1>Welcome to the Game Room</h1>
-            <div id="walletInfo">
-                <button class="connectWallet" style="position: absolute; top: 25px; right: 25px;" id="connectWallet" onclick="loadWallet();">
-                    <span id="walletStatus">Connect Wallet</span>
-                </button>
-            </div>
+            <div id="walletInfo"></div>
         </header>
         <main>
             <nav>
@@ -46,4 +40,6 @@
             </nav>
         </main>
     </body>
+    <script src="node_modules/web3/dist/web3.min.js"></script>
+    <script src="Wallet/Wallet.js"></script>
 </html>

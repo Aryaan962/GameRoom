@@ -125,16 +125,39 @@ a {font-family: 'Open Sans', sans-serif;
 }
 
 .connectWallet {
+    position: absolute;
     display: inline-block;
     transition-duration: 0.2s;
+    top: 25px;
+    right: 25px;
+    height: 38px;
+    width: 152px;
     margin: 4px 2px;
     cursor: pointer;
-    padding: 8px 20px;
-    border: 0px;
+    border: 1px solid #1752f0;
     border-radius: 30px;
     text-decoration: none;
     color: #ffffff;
     background-color: #1752f0;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.connectedWallet {
+    position: absolute;
+    display: inline-block;
+    top: 25px;
+    right: 25px;
+    height: 38px;
+    width: 152px;
+    margin: 4px 2px;
+    cursor: auto;
+    border: 1px solid #1752f0;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #ffffff;
     text-align: center;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
