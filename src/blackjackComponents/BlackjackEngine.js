@@ -49,11 +49,11 @@ function startGame() {
 }
 
 function showDealerCardsCovered() {
-    dealerCardCovered.src = "Images/PlayingCards/" + dealer.cardsInHand[0] + ".png";
+    dealerCardCovered.src = "../images/playingCards/" + dealer.cardsInHand[0] + ".png";
     dealerCardCovered.style.width = "75px";
     document.getElementById("dealerCards").append(dealerCardCovered);
 
-    coveredCard.src = "Images/PlayingCards/Covered.png";
+    coveredCard.src = "../images/playingCards/Covered.png";
     coveredCard.style.height = "110px";
     document.getElementById("dealerCards").append(coveredCard);
 }
@@ -65,7 +65,7 @@ function showDealerCardsUncovered() {
     }
     for (var i = 0; i < dealer.cardsInHand.length; i++) {
         dealerCardUncovered = document.createElement("img");
-        dealerCardUncovered.src = "Images/PlayingCards/" + dealer.cardsInHand[i] + ".png";
+        dealerCardUncovered.src = "../images/playingCards/" + dealer.cardsInHand[i] + ".png";
         dealerCardUncovered.style.width = "75px";
         document.getElementById("dealerCards").append(dealerCardUncovered);
     }
@@ -78,7 +78,7 @@ function showUserCards() {
     }
     for (var i = 0; i < user.cardsInHand.length; i++) {
         userCards = document.createElement("img");
-        userCards.src = "Images/PlayingCards/" + user.cardsInHand[i] + ".png";
+        userCards.src = "../images/playingCards/" + user.cardsInHand[i] + ".png";
         userCards.style.width = "75px";
         document.getElementById("userCards").append(userCards);
     }
@@ -137,14 +137,14 @@ function displayWinner() {
     winnerMessage.style.width = "500px";
     document.getElementById("ovalTable").appendChild(winnerMessage);
     if (!dealer.checkStatus()) {
-        winnerMessage.src = "Images/YouWin.png";
+        winnerMessage.src = "../images/YouWinBanner.png";
     } else {
         if (!user.checkStatus() || dealer.points > user.points) {
-            winnerMessage.src = "Images/DealerWins.png";
+            winnerMessage.src = "../images/DealerWinsBanner.png";
         } else if (dealer.points == user.points) {
-            winnerMessage.src = "Images/Push.png";
+            winnerMessage.src = "../images/PushBanner.png";
         } else {
-            winnerMessage.src = "Images/YouWin.png";
+            winnerMessage.src = "../images/YouWinBanner.png";
         } 
     }
 }

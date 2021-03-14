@@ -1,6 +1,6 @@
 // const rpcURL = "https://ropsten.infura.io/v3/c363994b81ce45f98c8528b3add2bab0";
 // const web3 = new Web3(new Web3.providers.HttpProvider(rpcURL));
-window.web3 = new Web3(ethereum);
+window.web3 = new Web3(window.ethereum);
 let account = "";
 let balance = 0;
 let status = false;
@@ -106,10 +106,10 @@ function updateStatus() {
 
         let statusElement = document.createElement("span");
         statusElement.innerHTML = account.charAt(0) + account.charAt(1) + account.charAt(2) + account.charAt(3) + 
-        account.charAt(4) + account.charAt(5) + "..." + account.charAt(38) + account.charAt(39) + account.charAt(40) + account.charAt(41);
+            account.charAt(4) + "..." + account.charAt(38) + account.charAt(39) + account.charAt(40) + account.charAt(41);
         statusElement.style.position = "absolute";
         statusElement.style.top = "8px";
-        statusElement.style.right = "20px";
+        statusElement.style.left = "40px";
         walletElement.append(statusElement);
 
         let connectCircle = document.createElement("span");
@@ -117,48 +117,9 @@ function updateStatus() {
         connectCircle.style.height = "10px";
         connectCircle.style.width = "10px";
         connectCircle.style.background = "#23d198";
-        connectCircle.style.left = "10px";
-        connectCircle.style.top = "13px";
+        connectCircle.style.top = "14px";
+        connectCircle.style.left = "15px";
         connectCircle.style.borderRadius = "50%";
         walletElement.append(connectCircle);
     }
-}
-
-function updatePage() {
-    let walletNode = document.getElementById("walletInfo");
-    while (walletNode.firstChild) {
-        walletNode.removeChild(walletNode.lastChild);
-    }
-
-    let walletEl = document.createElement("div");
-    walletEl.id = "info";
-    walletEl.style.position = "absolute";
-    walletEl.style.height = "36px";
-    walletEl.style.width = "152px";
-    walletEl.style.background = "#ffffff";
-    walletEl.style.right = "26px";
-    walletEl.style.top = "29px";
-    walletEl.style.borderRadius = "30px";
-    walletEl.style.border = "1px solid #1752f0";
-    walletNode.append(walletEl);
-
-    let statusEl = document.createElement("p");
-    statusEl.innerHTML = account.charAt(0) + account.charAt(1) + account.charAt(2) + account.charAt(3) + 
-        account.charAt(4) + account.charAt(5) + "..." + account.charAt(38) + account.charAt(39) + account.charAt(40) + account.charAt(41);
-    statusEl.style.position = "absolute";
-    statusEl.style.bottom = "-10px";
-    statusEl.style.right = "20px";
-    document.getElementById("info").append(statusEl);
-
-    let connectCircle = document.createElement("div");
-    connectCircle.style.position = "absolute";
-    connectCircle.style.height = "10px";
-    connectCircle.style.width = "10px";
-    connectCircle.style.background = "#23d198";
-    connectCircle.style.left = "10px";
-    connectCircle.style.top = "13px";
-    connectCircle.style.borderRadius = "50%";
-    document.getElementById("info").append(connectCircle);
-
-    console.log(status);
 }

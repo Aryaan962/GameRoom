@@ -34,28 +34,26 @@ a {font-family: 'Open Sans', sans-serif;
     right: 0px;
 }
 
-.oval {
+.table {
     position: absolute;
-    height: 450px;
-    width: 1000px;
-    background-color: rgb(31, 74, 45);
+    height: 400px;
+    width: 950px;
+    background-color: #1f4a2d;
     border-radius: 50%;
-}
-
-.main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .border {
-    height: 530px;
-    width: 1080px;
-    background-color: rgb(102, 51, 0);
+    position: absolute;
+    height: 480px;
+    width: 1030px;
+    background-color: #663300;
+    border-radius: 50%;
     top: 50%;
     left: 50%;
-    margin-top: -265px;
-    margin-left: -540px;
+    transform: translate(-50%, -50%);
 }
 
 .dealerChip {
@@ -65,12 +63,12 @@ a {font-family: 'Open Sans', sans-serif;
     background: #fff;
     border-radius: 50%;
     padding: 5px;
-    border: 1px solid rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
+    border: 1px solid #000000;
+    color: #000000;
     text-align: center;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
-    top: -32px;
+    top: 8px;
     left: 40%;
 }
 

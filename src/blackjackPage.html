@@ -18,15 +18,12 @@
             <div id="walletInfo"></div>
         </header>
         <main>
-            <div class="oval border"></div>
-            <div class="oval main" id="ovalTable">
+            <div class="border">
                 <div class="dealerChip">D</div>
-                <div class="dealer center" id="dealerCards">
-
-                </div>
-                <div class="user center" id="userCards">
-
-                </div>
+            </div>
+            <div class="table" id="ovalTable">
+                <div class="dealer center" id="dealerCards"></div>
+                <div class="user center" id="userCards"></div>
             </div>
             
             <table class="center bottom">
@@ -53,8 +50,8 @@
             </table>
         </main>
     </body>
-    <script src=Blackjack/CardHand.js></script>
-    <script src=Blackjack/BlackjackEngine.js></script>
-    <script src="node_modules/web3/dist/web3.min.js"></script>
-    <script src="Wallet/Wallet.js"></script>
+    <script src="../node_modules/web3/dist/web3.min.js"></script>
+    <script src="blackjackComponents/CardHand.js"></script>
+    <script src="blackjackComponents/BlackjackEngine.js"></script>
+    <script src="cryptoComponents/Wallet.js"></script>
 </html>
