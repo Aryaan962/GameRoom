@@ -7,6 +7,7 @@ let dealer;
 
 let coveredCard = document.createElement("img");
 let dealerCardCovered = document.createElement("img");
+
 let dealerCardUncovered = document.createElement("img");
 let userCards = document.createElement("p");
 let winnerMessage = document.createElement("img");
@@ -66,7 +67,7 @@ function showDealerCardsUncovered() {
     for (var i = 0; i < dealer.cardsInHand.length; i++) {
         dealerCardUncovered = document.createElement("img");
         dealerCardUncovered.src = "../images/playingCards/" + dealer.cardsInHand[i] + ".png";
-        dealerCardUncovered.style.width = "75px";
+        dealerCardUncovered.style.width = "70px";
         document.getElementById("dealerCards").append(dealerCardUncovered);
     }
 }
@@ -76,10 +77,11 @@ function showUserCards() {
     while (userCardsNode.firstChild) {
         userCardsNode.removeChild(userCardsNode.lastChild);
     }
+    
     for (var i = 0; i < user.cardsInHand.length; i++) {
         userCards = document.createElement("img");
         userCards.src = "../images/playingCards/" + user.cardsInHand[i] + ".png";
-        userCards.style.width = "75px";
+        userCards.style.width = "70px";
         document.getElementById("userCards").append(userCards);
     }
 }

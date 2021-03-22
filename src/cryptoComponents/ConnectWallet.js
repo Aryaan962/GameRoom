@@ -1,9 +1,6 @@
-// const rpcURL = "https://ropsten.infura.io/v3/c363994b81ce45f98c8528b3add2bab0";
-// const web3 = new Web3(new Web3.providers.HttpProvider(rpcURL));
 window.web3 = new Web3(window.ethereum);
 let account = "";
 let balance = 0;
-let status = false;
 
 updateInterval();
 
@@ -14,7 +11,7 @@ async function updateInterval() {
             console.log("Wallet is disconnected");
             return null;
         }
-        await getUpdate();
+        await updateVariables();
     }, 1000);
 }
 
@@ -26,10 +23,14 @@ async function loadWallet() {
     updateInterval();
 }
 
-async function getUpdate() {
+async function disconnectWallet() {
+    await ethereum.disable();
+}
+
+async function updateVariables() {
     account = await getCurrentAccount();
     balance = await getBalance();
-    updateStatus();
+    updateInterface();
     console.log("Account: " + account + "   Balance: " + balance);
 }
 
@@ -72,7 +73,7 @@ async function getBalance() {
     return balance;
 }
 
-function updateStatus() {
+function updateInterface() {
     if (account == undefined) {
         let walletInfoNode = document.getElementById("walletInfo");
         while (walletInfoNode.firstChild) {
@@ -81,11 +82,10 @@ function updateStatus() {
 
         let walletButton = document.createElement("button");
         walletButton.classList.add("connectWallet");
-        walletButton.style.position = "absolute";
         walletButton.onclick = function() {loadWallet()};
         walletInfoNode.append(walletButton);
 
-        let walletStatus = document.createElement("span");
+        let walletStatus = document.createElement("div");
         walletStatus.innerHTML = "Connect Wallet";
         walletStatus.style.position = "absolute";
         walletStatus.style.top = "8px";
@@ -98,27 +98,36 @@ function updateStatus() {
             walletInfoNode.removeChild(walletInfoNode.lastChild);
         }
 
-        let walletElement = document.createElement("span");
+        let walletElement = document.createElement("div");
         walletElement.classList.add("connectedWallet");
-        walletElement.style.position = "absolute";
-        walletElement.onclick = "loadWallet()";
+        walletElement.onclick = function() {addBalance()};
         walletInfoNode.append(walletElement);
 
-        let statusElement = document.createElement("span");
+        // let balance = document.createElement("div");
+        // balance.innerHTML = balance;
+        // balance.style.position = "absolute";
+        // balance.style.top = "50%";
+        // balance.style.left = "50%";
+        // balance.style.transform = "translate(-40%, -50%)";
+        // walletElement.append(balance);
+
+        let statusElement = document.createElement("div");
         statusElement.innerHTML = account.charAt(0) + account.charAt(1) + account.charAt(2) + account.charAt(3) + 
             account.charAt(4) + "..." + account.charAt(38) + account.charAt(39) + account.charAt(40) + account.charAt(41);
         statusElement.style.position = "absolute";
-        statusElement.style.top = "8px";
-        statusElement.style.left = "40px";
+        statusElement.style.top = "50%";
+        statusElement.style.left = "50%";
+        statusElement.style.transform = "translate(-40%, -50%)";
         walletElement.append(statusElement);
 
-        let connectCircle = document.createElement("span");
+        let connectCircle = document.createElement("div");
         connectCircle.style.position = "absolute";
         connectCircle.style.height = "10px";
         connectCircle.style.width = "10px";
         connectCircle.style.background = "#23d198";
-        connectCircle.style.top = "14px";
-        connectCircle.style.left = "15px";
+        connectCircle.style.top = "50%";
+        connectCircle.style.left = "50%";
+        connectCircle.style.transform = "translate(-600%, -50%)";
         connectCircle.style.borderRadius = "50%";
         walletElement.append(connectCircle);
     }

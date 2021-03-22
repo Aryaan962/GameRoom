@@ -1,5 +1,4 @@
 class CardHand {
-
     constructor(playerName) {
         this.name = playerName;
         this.cardsInHand = [];
