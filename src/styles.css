@@ -43,17 +43,7 @@ a {font-family: 'Open Sans', sans-serif;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.border {
-    position: absolute;
-    height: 480px;
-    width: 1030px;
-    background-color: #663300;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    border: 40px solid #663300;
 }
 
 .dealerChip {
@@ -68,7 +58,7 @@ a {font-family: 'Open Sans', sans-serif;
     text-align: center;
     font-size: 15px;
     font-family: 'Open Sans', sans-serif;
-    top: 8px;
+    top: -33px;
     left: 40%;
 }
 
@@ -150,24 +140,196 @@ a {font-family: 'Open Sans', sans-serif;
 .connectedWallet {
     position: absolute;
     display: inline-block;
+    white-space: nowrap;
     top: 25px;
     right: 25px;
     height: 38px;
     width: 152px;
     margin: 4px 2px;
-    cursor: auto;
     border: 1px solid #1752f0;
     border-radius: 30px;
     text-decoration: none;
     color: #000000;
     background-color: #ffffff;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'Open Sans', sans-serif;
 }
 
 .connectedWallet:hover {
     background-color: #eff3ff;
-    cursor: pointer;
+    cursor: text;
     color: rgb(0, 0, 0);
+}
+
+.deposit {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    top: 25px;
+    right: 110px;
+    height: 38px;
+    width: 152px;
+    margin: 4px 2px;
+    cursor: auto;
+    border: 1px solid #67f385;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #67f385;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.deposit:hover {
+    border: 1px solid #54c96e;
+    background-color: #54c96e;
+}
+
+.withdraw {
+    position: absolute;
+    display: inline-block;
+    top: 25px;
+    right: 205px;
+    height: 38px;
+    width: 152px;
+    margin: 4px 2px;
+    cursor: auto;
+    border: 1px solid #f34f4f;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #f34f4f;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.withdraw:hover {
+    border: 1px solid #df4a4a;
+    background-color: #df4a4a;
+}
+
+.GUI {
+    position: absolute;
+    display: inline-block;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    height: 200px;
+    width: 360px;
+    top: 0%;
+    right: 0%;
+}
+
+.close {
+    position: absolute;
+    background-color: red;
+    border-radius: 5px;
+    border: 1px solid red;
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    top: 0px;
+    left: 0px;
+}
+
+.confirmButtonDeposit {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 250px;
+    height: 35px;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 20px;
+    background-color: #67f385;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.confirmButtonDeposit:hover {
+    background-color: #54c96e;
+}
+
+.balanceLabels {
+    position: absolute;
+    left: 50%;
+    white-space: nowrap;
+    transform: translate(-50%);
+    padding-top: 35px;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.currentBalance {
+    position: absolute;
+    top: 80px;
+    left: 90px;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.depositAmount {
+    position: absolute;
+    width: 80px;
+    top: 80px;
+    left: 235px;
+}
+
+.error {
+    position: absolute;
+    color: red;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    left: 50%;
+    transform: translate(-50%);
+    white-space: nowrap;
+    top: 110px;
+}
+
+.tab {
+    position: absolute;
+    display: inline-block;
+    top: 80px;
+    right: 25px;
+    height: 38px;
+    width: 175px;
+    margin: 4px 2px;
+    border: 1px solid #000000;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tab:hover {
+    cursor: pointer;
+    background-color: #f8f8f8;
+}
+
+.tooltip {
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    position: absolute;
+    visibility: hidden;
+    background-color:#ffffff;
+    color:#000000;
+    text-align: center;
+    margin: 0% 15%;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    border: 1px solid #000000;
+    font-size: 13px;
+    transform: translate(0%, 100%);
 }

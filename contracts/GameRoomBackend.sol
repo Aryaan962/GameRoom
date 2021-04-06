@@ -1,4 +1,4 @@
-pragma solidity ^0.7.4;
+pragma solidity ^0.8.3;
 
 import "./Ownable.sol";
 
@@ -41,8 +41,8 @@ contract GameRoom is Ownable {
         addressToAccount[msg.sender].balance -= _amount;
     } 
     
-    function withdrawContract() external onlyOwner {
-        address payable _owner = payable(owner());
-        _owner.transfer(address(this).balance);
+    function withdrawContract() external isOwner {
+        address owner = getOwner();
+        owner.transfer(address(this).balance);
     }
 }

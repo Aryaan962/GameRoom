@@ -27,10 +27,9 @@ function newGame() {
     cardsUsed = [];
     user = new CardHand("User");
     dealer = new CardHand("Dealer");
-    if (betSize.value > 0.01) {
+    console.log(web3.utils.fromWei(userBalance, "ether") - betSize.value >= 0);
+    if (web3.utils.fromWei(userBalance, "ether") - betSize.value >= 0) {
         startGame();
-    } else {
-        window.alert("You must increase your bet or you forgot to input your bet.");
     }
 }
 
@@ -143,10 +142,16 @@ function displayWinner() {
     } else {
         if (!user.checkStatus() || dealer.points > user.points) {
             winnerMessage.src = "../images/DealerWinsBanner.png";
+            if (betSize.value > 0) {
+                loss(web3.utils.toWei(betSize.value, "ether"));
+            }
         } else if (dealer.points == user.points) {
             winnerMessage.src = "../images/PushBanner.png";
         } else {
             winnerMessage.src = "../images/YouWinBanner.png";
+            if (betSize.value > 0) {
+                win(web3.utils.toWei(betSize.value, "ether"));
+            }
         } 
     }
 }

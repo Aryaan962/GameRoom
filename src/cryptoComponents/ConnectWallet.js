@@ -1,6 +1,7 @@
 window.web3 = new Web3(window.ethereum);
 let account = "";
-let balance = 0;
+let userStatus = "Create User";
+let cursorType = "pointer";
 
 updateInterval();
 
@@ -15,23 +16,18 @@ async function updateInterval() {
     }, 1000);
 }
 
+async function updateVariables() {
+    await getCurrentAccount();
+    await getBalance();
+    await getExistance();
+    console.log(account);
+    updateInterface();
+}
+
 async function loadWallet() {
     await loadWeb3();
-    account = await getCurrentAccount();
-    balance = await getBalance();
-    console.log("Account: " + account + "   Balance: " + balance);
+    await getCurrentAccount();
     updateInterval();
-}
-
-async function disconnectWallet() {
-    await ethereum.disable();
-}
-
-async function updateVariables() {
-    account = await getCurrentAccount();
-    balance = await getBalance();
-    updateInterface();
-    console.log("Account: " + account + "   Balance: " + balance);
 }
 
 async function loadWeb3() {
@@ -58,19 +54,7 @@ async function loadWeb3() {
 async function getCurrentAccount() {
     let accounts = await window.web3.eth.getAccounts();
     accounts = accounts[0];
-    if (accounts == undefined) {
-        return accounts;
-    }
-    return accounts;
-}
-
-async function getBalance() {
-    if (account == undefined) {
-        return undefined;
-    }
-    let balance = await window.web3.eth.getBalance(account);
-    balance = balance / 10**18;
-    return balance;
+    account = accounts;
 }
 
 function updateInterface() {
@@ -91,44 +75,118 @@ function updateInterface() {
         walletStatus.style.top = "8px";
         walletStatus.style.right = "20px";
         walletButton.append(walletStatus);
-
     } else {
-        let walletInfoNode = document.getElementById("walletInfo");
-        while (walletInfoNode.firstChild) {
-            walletInfoNode.removeChild(walletInfoNode.lastChild);
-        }
+        if (userExistance == false) {
+            let walletInfoNode = document.getElementById("walletInfo");
+            while (walletInfoNode.firstChild) {
+                walletInfoNode.removeChild(walletInfoNode.lastChild);
+            }
 
-        let walletElement = document.createElement("div");
-        walletElement.classList.add("connectedWallet");
-        walletElement.onclick = function() {addBalance()};
-        walletInfoNode.append(walletElement);
+            let newUserElement = document.createElement("div");
+            newUserElement.classList.add("connectedWallet");
+            newUserElement.classList.add("tooltip");
+            newUserElement.style.cursor = "pointer";
+            newUserElement.onclick = function() {
+                createUser()
+                userStatus = "Loading..."};
+            walletInfoNode.append(newUserElement);
 
-        // let balance = document.createElement("div");
-        // balance.innerHTML = balance;
-        // balance.style.position = "absolute";
-        // balance.style.top = "50%";
-        // balance.style.left = "50%";
-        // balance.style.transform = "translate(-40%, -50%)";
-        // walletElement.append(balance);
-
-        let statusElement = document.createElement("div");
-        statusElement.innerHTML = account.charAt(0) + account.charAt(1) + account.charAt(2) + account.charAt(3) + 
+            let statusElement = document.createElement("div");
+            statusElement.classList.add("tooltiptext");
+            statusElement.innerHTML = "Connected to: " + account.charAt(0) + account.charAt(1) + account.charAt(2) + account.charAt(3) + 
             account.charAt(4) + "..." + account.charAt(38) + account.charAt(39) + account.charAt(40) + account.charAt(41);
-        statusElement.style.position = "absolute";
-        statusElement.style.top = "50%";
-        statusElement.style.left = "50%";
-        statusElement.style.transform = "translate(-40%, -50%)";
-        walletElement.append(statusElement);
+            statusElement.style.whiteSpace = "normal";
+            newUserElement.append(statusElement);
 
-        let connectCircle = document.createElement("div");
-        connectCircle.style.position = "absolute";
-        connectCircle.style.height = "10px";
-        connectCircle.style.width = "10px";
-        connectCircle.style.background = "#23d198";
-        connectCircle.style.top = "50%";
-        connectCircle.style.left = "50%";
-        connectCircle.style.transform = "translate(-600%, -50%)";
-        connectCircle.style.borderRadius = "50%";
-        walletElement.append(connectCircle);
+            let createNewUser = document.createElement("div");
+            createNewUser.innerHTML = userStatus;
+            createNewUser.style.position = "absolute";
+            createNewUser.style.top = "50%";
+            createNewUser.style.left = "50%";
+            createNewUser.style.transform = "translate(-50%, -50%)";
+            newUserElement.append(createNewUser);
+        } else {
+            let walletInfoNode = document.getElementById("walletInfo");
+            while (walletInfoNode.firstChild) {
+                walletInfoNode.removeChild(walletInfoNode.lastChild);
+            }
+
+            let withdrawElement = document.createElement("div");
+            withdrawElement.classList.add("withdraw");
+            withdrawElement.style.cursor = "pointer";
+            withdrawElement.onclick = function() {withdrawBalance()};
+            walletInfoNode.append(withdrawElement);
+
+            let withdrawLabel = document.createElement("div");
+            withdrawLabel.innerHTML = "Withdraw";
+            withdrawLabel.style.position = "absolute";
+            withdrawLabel.style.top = "50%";
+            withdrawLabel.style.left = "50%";
+            withdrawLabel.style.transform = "translate(-85%, -50%)";
+            withdrawElement.append(withdrawLabel);
+
+            let depositElement = document.createElement("div");
+            depositElement.classList.add("deposit");
+            depositElement.style.cursor = "pointer";
+            depositElement.onclick = function() {depositGUI()};
+            walletInfoNode.append(depositElement);
+
+            let depositLabel = document.createElement("div");
+            depositLabel.innerHTML = "Deposit";        
+            depositLabel.style.position = "absolute";
+            depositLabel.style.top = "50%";
+            depositLabel.style.left = "50%";
+            depositLabel.style.transform = "translate(-100%, -50%)";
+            depositElement.append(depositLabel);
+
+            let tabElement = document.createElement("div");
+            tabElement.classList.add("tab");
+            walletInfoNode.append(tabElement);
+
+            let tabLabel = document.createElement("div");
+            tabLabel.innerHTML = "Settle" + " 0.0000" + " Ether";
+            tabLabel.style.marginTop = "9px";
+            tabElement.append(tabLabel);
+
+            let walletElement = document.createElement("div");
+            walletElement.classList.add("connectedWallet");
+            walletElement.classList.add("tooltip");
+            walletInfoNode.append(walletElement);
+            
+            let statusElement = document.createElement("div");
+            statusElement.classList.add("tooltiptext");
+            statusElement.innerHTML = "Connected to: " + account.charAt(0) + account.charAt(1) + account.charAt(2) + account.charAt(3) + 
+            account.charAt(4) + "..." + account.charAt(38) + account.charAt(39) + account.charAt(40) + account.charAt(41);
+            statusElement.style.whiteSpace = "normal";
+            walletElement.append(statusElement);
+
+            let balanceLabel = document.createElement("div");
+            balanceLabel.innerHTML = "Balance:";
+            balanceLabel.style.position = "absolute";
+            balanceLabel.style.top = "50%";
+            balanceLabel.style.left = "50%";
+            balanceLabel.style.transform = "translate(-40%, -120%)";
+            balanceLabel.style.fontSize = "10px";
+            walletElement.append(balanceLabel);
+
+            let balance = document.createElement("div");
+            balance.innerHTML = web3.utils.fromWei(userBalance, "ether") + " Ether";
+            balance.style.position = "absolute";
+            balance.style.top = "50%";
+            balance.style.left = "50%";
+            balance.style.transform = "translate(-43%, -25%)";
+            walletElement.append(balance);
+
+            let connectCircle = document.createElement("div");
+            connectCircle.style.position = "absolute";
+            connectCircle.style.height = "10px";
+            connectCircle.style.width = "10px";
+            connectCircle.style.background = "#23d198";
+            connectCircle.style.top = "50%";
+            connectCircle.style.left = "50%";
+            connectCircle.style.transform = "translate(-600%, -50%)";
+            connectCircle.style.borderRadius = "50%";
+            walletElement.append(connectCircle);
+        }
     }
 }
