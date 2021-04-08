@@ -1,13 +1,16 @@
-h1 {font-family: 'Open Sans', sans-serif;
+h1 {
+    font-family: 'Open Sans', sans-serif;
     margin: 25px;
     font-size:xx-large;
 }
 
-p {font-family: 'Open Sans', sans-serif;
+p {
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
 }
 
-a {font-family: 'Open Sans', sans-serif;
+a {
+    font-family: 'Open Sans', sans-serif;
     text-decoration: none;
     color:black;
     text-align: center;
@@ -183,8 +186,8 @@ a {font-family: 'Open Sans', sans-serif;
 }
 
 .deposit:hover {
-    border: 1px solid #54c96e;
-    background-color: #54c96e;
+    border: 1px solid #59d474;
+    background-color: #59d474;
 }
 
 .withdraw {
@@ -196,19 +199,19 @@ a {font-family: 'Open Sans', sans-serif;
     width: 152px;
     margin: 4px 2px;
     cursor: auto;
-    border: 1px solid #f34f4f;
+    border: 1px solid #ff605c;
     border-radius: 30px;
     text-decoration: none;
     color: #000000;
-    background-color: #f34f4f;
+    background-color: #ff605c;
     text-align: center;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
 }
 
 .withdraw:hover {
-    border: 1px solid #df4a4a;
-    background-color: #df4a4a;
+    border: 1px solid #e05451;
+    background-color: #e05451;
 }
 
 .GUI {
@@ -225,14 +228,14 @@ a {font-family: 'Open Sans', sans-serif;
 
 .close {
     position: absolute;
-    background-color: red;
-    border-radius: 5px;
-    border: 1px solid red;
+    background-color: #ff605c;
+    border-radius: 100%;
+    border: 1px solid #ff605c;
     cursor: pointer;
-    width: 12px;
-    height: 12px;
-    top: 0px;
-    left: 0px;
+    width: 8px;
+    height: 10px;
+    top: 5px;
+    left: 5px;
 }
 
 .confirmButtonDeposit {
@@ -250,7 +253,7 @@ a {font-family: 'Open Sans', sans-serif;
 }
 
 .confirmButtonDeposit:hover {
-    background-color: #54c96e;
+    background-color: #59d474;
 }
 
 .balanceLabels {
@@ -309,7 +312,7 @@ a {font-family: 'Open Sans', sans-serif;
 
 .tab:hover {
     cursor: pointer;
-    background-color: #f8f8f8;
+    background-color: #f1f0f0;
 }
 
 .tooltip {

@@ -87,8 +87,9 @@ function updateInterface() {
             newUserElement.classList.add("tooltip");
             newUserElement.style.cursor = "pointer";
             newUserElement.onclick = function() {
-                createUser()
-                userStatus = "Loading..."};
+                createUser();
+                userStatus = "Loading...";
+            };
             walletInfoNode.append(newUserElement);
 
             let statusElement = document.createElement("div");
