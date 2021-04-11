@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Game Room</title>
         <link rel="stylesheet" href="styles.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <header>
@@ -18,8 +18,11 @@
             <div id="walletInfo"></div>
         </header>
         <main>
+            <div id="main"></div>
         </main>
     </body>
-    <script src="../node_modules/web3/dist/web3.min.js"></script>
-    <script src="cryptoComponents/Wallet.js"></script>
+    <script src="node_modules/web3/dist/web3.min.js"></script>
+    <script src="cryptoComponents/ConnectWallet.js"></script>
+    <script src="cryptoComponents/ConnectSmartContract.js"></script>
+    <script src="cryptoComponents/GUI/deposit.js"></script>
 </html>

@@ -27,9 +27,14 @@ function newGame() {
     cardsUsed = [];
     user = new CardHand("User");
     dealer = new CardHand("Dealer");
-    if (web3.utils.fromWei(userBalance, "ether") - betSize.value >= 0) {
+    if (account != undefined) {
+        if (web3.utils.fromWei(userBalance, "ether") - Number(betSize.value) >= 0) {
+            startGame();
+        }
+    } else {
         startGame();
     }
+    
 }
 
 function startGame() {

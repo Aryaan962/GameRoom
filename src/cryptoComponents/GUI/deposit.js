@@ -36,11 +36,9 @@ function depositGUI() {
     depositButton.style.cursor = "pointer";
     let depositNumber = document.getElementById("depositAmount")
     depositButton.onclick = function() {
-        console.log(Number(depositNumber.value));
         if (Number(depositNumber.value) > 0) {
             setDepositAmount(depositNumber.value);
             depositBalance();
-            console.log("hi");
             while (main.firstChild) {
                 main.removeChild(main.lastChild);
             }
