@@ -1,6 +1,7 @@
-
 window.web3 = new Web3(window.ethereum);
 let account = "";
+let userTab;
+let tabBalance;
 let userStatus = "Create User";
 let cursorType = "pointer";
 
@@ -58,6 +59,14 @@ async function getCurrentAccount() {
     account = accounts;
 }
 
+async function getTab() {
+    usersRef.doc(account).get().then((doc) => {
+        userTab = doc.data().tab;
+    }).catch((error) => {
+        console.log("Error retrieving document:", error);
+    });
+}
+
 function updateInterface() {
     if (account == undefined) {
         let walletInfoNode = document.getElementById("walletInfo");
@@ -89,6 +98,9 @@ function updateInterface() {
             newUserElement.style.cursor = "pointer";
             newUserElement.onclick = function() {
                 createUser();
+                usersRef.doc(account).set({
+                    tab: 0
+                });
                 userStatus = "Loading...";
             };
             walletInfoNode.append(newUserElement);
@@ -146,7 +158,22 @@ function updateInterface() {
             walletInfoNode.append(tabElement);
 
             let tabLabel = document.createElement("div");
-            tabLabel.innerHTML = "Settle" + " 0.0000" + " Ether";
+            tabLabel.onclick = function () {
+                if (userTab > 0) {
+                    win(userTab);
+                    usersRef.doc(account).update({
+                        tab: 0
+                    });
+                } else {
+                    loss(userTab);
+                    usersRef.doc(account).update({
+                        tab: 0
+                    });
+                }
+            };
+            withdrawElement.onclick = function() {withdrawBalance()};
+            getTab();
+            tabLabel.innerHTML = "Settle " + userTab + " Ether";
             tabLabel.style.marginTop = "9px";
             tabElement.append(tabLabel);
 

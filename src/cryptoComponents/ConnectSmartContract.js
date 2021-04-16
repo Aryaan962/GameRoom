@@ -1,6 +1,5 @@
 let gameRoomContractABI;
 let gameRoomContractAddress;
-let gameRoomContract;
 let userBalance;
 let userExistance;
 let contractBalance;
@@ -143,7 +142,7 @@ async function loadContract() {
             "type": "function"
         }
     ];
-	gameRoomContractAddress = "0x678ae005a06B93F9b41c4e265558d3dE1E6B9CF8";
+	gameRoomContractAddress = "0x33D6F08DAbE721f4a9418d42431496f6d0a67034";
 	return await new window.web3.eth.Contract(gameRoomContractABI, gameRoomContractAddress);
 }
 
@@ -176,11 +175,11 @@ async function withdrawBalance() {
 }
 
 async function win(amount) {
-	await window.contract.methods.win(amount).send({ from: account });
+	await window.contract.methods.win(web3.utils.toWei(String(amount), "ether")).send({ from: account });
 }
 
 async function loss(amount) {
-	await window.contract.methods.loss(amount).send({ from: account });
+	await window.contract.methods.loss(web3.utils.toWei(String(amount *  -1), "ether")).send({ from: account });
 }
 
 async function balance() {

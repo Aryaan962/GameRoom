@@ -28,7 +28,10 @@ function newGame() {
     user = new CardHand("User");
     dealer = new CardHand("Dealer");
     if (account != undefined) {
-        if (web3.utils.fromWei(userBalance, "ether") - Number(betSize.value) >= 0) {
+        if (Number(web3.utils.fromWei(userBalance, "ether")) + userTab - Number(betSize.value) >= 0) {
+            usersRef.doc(account).update({
+                tab: userTab - betSize.value
+            });
             startGame();
         }
     } else {
@@ -143,19 +146,28 @@ function displayWinner() {
     document.getElementById("ovalTable").appendChild(winnerMessage);
     if (!dealer.checkStatus()) {
         winnerMessage.src = "images/YouWinBanner.png";
+        console.log(userTab);
+        console.log(Number(betSize.value));
+        usersRef.doc(account).update({
+            tab: userTab + Number(betSize.value) * 2
+        });
     } else {
         if (!user.checkStatus() || dealer.points > user.points) {
             winnerMessage.src = "images/DealerWinsBanner.png";
-            if (betSize.value > 0) {
-                loss(web3.utils.toWei(betSize.value, "ether"));
-            }
         } else if (dealer.points == user.points) {
             winnerMessage.src = "images/PushBanner.png";
+            console.log(userTab);
+            console.log(Number(betSize.value));
+            usersRef.doc(account).update({
+                tab: userTab + Number(betSize.value)
+            });
         } else {
             winnerMessage.src = "images/YouWinBanner.png";
-            if (betSize.value > 0) {
-                win(web3.utils.toWei(betSize.value, "ether"));
-            }
+            console.log(userTab);
+            console.log(Number(betSize.value));
+            usersRef.doc(account).update({
+                tab: userTab + Number(betSize.value) * 2
+            });
         } 
     }
 }

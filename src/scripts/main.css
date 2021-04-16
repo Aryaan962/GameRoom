@@ -297,8 +297,10 @@ a {
     display: inline-block;
     top: 80px;
     right: 25px;
-    height: 38px;
-    width: 175px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     margin: 4px 2px;
     border: 1px solid #000000;
     border-radius: 30px;
